@@ -9,12 +9,14 @@ defined('BASEPATH') OR exit('Access Denied');//comment this line if not using wi
  */
 class Paystack {
     protected $secret_key;
+    protected $public_key;
 
     public function __construct($data) {
-        $this->secret_key = $data['key'];
+        $this->secret_key = $data['secret_key'];
+        $this->public_key = $data['public_key'];
     }
 	
-    
+	
     /*
     ********************************************************************************************************************************
     ********************************************************************************************************************************
@@ -46,7 +48,7 @@ class Paystack {
         
         curl_close($curl);
         
-        return $response;
+        return json_decode($response);
     }
     
     /*
