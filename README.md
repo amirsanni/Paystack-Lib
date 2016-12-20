@@ -8,14 +8,14 @@ PHP implementation of some of the features of Paystack's API targeted at CodeIgn
 
 
 # Getting Started
-Copy file **`Paystack.php`** to your **`application/libraries`** directory and load it from any of your controllers as:
+Copy file **Paystack.php** to your **application/libraries** directory and load it from any of your controllers as:
 
-`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=>YOUR_PUBLIC_KEY]);`
+_`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=>YOUR_PUBLIC_KEY]);`_
 
 # Features
 - Transaction Verification
- To verify a transaction, call the `verifyTransaction()` as shown below:
+ To verify a transaction, call the _`verifyTransaction()`_ as shown below:
  
- `$trans_info = $this->paystack->verifyTransaction($transaction_ref);`
+ _`$trans_info = $this->paystack->verifyTransaction($transaction_ref);`_
 
  An array of the transaction information will be returned to you.
