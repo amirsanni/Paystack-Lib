@@ -4,7 +4,7 @@ PHP implementation of some of the features of Paystack's API targeted at CodeIgn
 
 # Requirements
 - PHP >= 5.4
-- CodeIgniter 3
+- CodeIgniter 3.\*.\*
 
 
 # Getting Started
@@ -14,7 +14,8 @@ Copy file **`Paystack.php`** to your **`application/libraries`** directory and l
 
 # Features
 - Transaction Verification
+ To verify a transaction, call the `verifyTransaction()` as shown below:
+ 
+ `$trans_info = $this->paystack->verifyTransaction($transaction_ref);`
 
-`$trans_info = $this->paystack->verifyTransaction($transaction_ref);`
-
-An array of the transaction information will be returned to you.
+ An array of the transaction information will be returned to you.
