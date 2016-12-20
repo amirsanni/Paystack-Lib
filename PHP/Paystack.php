@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('Access Denied');//comment this line if not using wi
  * Description of Paystack
  *
  * @author Amir <amirsanni@gmail.com>
- * @date 24-Oct-2016
+ * @date 20-Dec-2016
  */
 class Paystack {
     protected $secret_key;
