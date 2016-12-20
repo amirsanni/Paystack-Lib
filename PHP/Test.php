@@ -11,7 +11,7 @@ class Test extends CI_Controller{
     public function __construct(){
         parent::__construct();
         
-		$this->load->library('paystack', ['secret_key'=>'YOUR_SECRET_KEY', 'public_key'=>'YOUR_PUBLIC_KEY']);
+	$this->load->library('paystack', ['secret_key'=>'YOUR_SECRET_KEY', 'public_key'=>'YOUR_PUBLIC_KEY']);
     }
     
     /*
