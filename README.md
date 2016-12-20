@@ -12,6 +12,6 @@ Copy file "Paystack.php" to your "application/libraries" directory and load it f
 $this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=>YOUR_PUBLIC_KEY]);
 
 # Features
-#Transaction Verification
+######Transaction Verification
 $trans_info = $this->paystack->verifyTransaction($transaction_ref);
 An array of the transaction information will be returned to you.
