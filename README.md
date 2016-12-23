@@ -20,3 +20,7 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
  _`$trans_info = $this->paystack->verifyTransaction($transaction_ref);`_
 
  An array of the transaction information will be returned to you.
+ 
+ 
+ ##### Note:
+ This library is a work in progress and far from done.
