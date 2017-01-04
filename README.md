@@ -22,5 +22,5 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
  An array of the transaction information will be returned to you.
  
  
- # Note:
- This library is a work in progress and far from done.
+# Note:
+This library is a work in progress and far from done.
