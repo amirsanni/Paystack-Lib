@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('Access Denied');//comment this line if not using with CodeIgniter
+defined('BASEPATH') OR exit('Access Denied');//remove this line if not using with CodeIgniter
 
 /**
  * Description of Paystack
@@ -41,8 +41,8 @@ class Paystack {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         
         //Modify this two lines to suit your needs
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1);//curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE);//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);//curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE);
         
         $response = curl_exec($curl);
         
