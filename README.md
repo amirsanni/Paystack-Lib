@@ -13,7 +13,7 @@ Copy file **Paystack.php** to your **application/libraries** directory and load 
 _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=>YOUR_PUBLIC_KEY]);`_
 
 # Features
-- Transaction Initialisation:
+- ### Transaction Initialisation:
 
  To initialise a transaction, call _`init()`_ as shown below:
  
@@ -27,7 +27,7 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
   
 
 
-- Plan Subscription:
+- ### Plan Subscription:
 
  To subscribe user to a predefined subscription, call _`initSubscription()`_ as shown below:
  
@@ -40,7 +40,7 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
   - $return_array {boolean}: Whether the method should return the whole array or just the **authorization_url**. Authorization URL will be returned by default (Optional)
 
 
-- Transaction Verification:
+- ### Transaction Verification:
 
  To verify a transaction, call the _`verifyTransaction()`_ as shown below:
  
