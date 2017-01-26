@@ -17,7 +17,7 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
 
  To initialise a transaction, call _`init()`_ as shown below:
  
- _`$this->paystack->init($ref, $amount_in_kobo, $email, $metadata_arr, $callback_url, $return_array)`_
+ _`$auth_url = $this->paystack->init($ref, $amount_in_kobo, $email, $metadata_arr, $callback_url, $return_array)`_
   - $ref {string}: Transaction Reference (Required)
   - $amount_in_kobo {int}: Amount in kobo (Required)
   - $email {string}: Customer's Email Address (Required)
@@ -31,7 +31,7 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
 
  To subscribe user to a predefined subscription, call _`initSubscription()`_ as shown below:
  
- _`$this->paystack->initSubscription($amount_in_kobo, $email, $plan, $metadata_arr, $callback_url, $return_array)`_
+ _`$auth_url = $this->paystack->initSubscription($amount_in_kobo, $email, $plan, $metadata_arr, $callback_url, $return_array)`_
   - $amount_in_kobo {int}: Amount in kobo (Required)
   - $email {string}: Customer's Email Address (Required)
   - $plan {string}: Plan to subscribe user to (Required)
@@ -44,7 +44,7 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
 
  To verify a transaction, call the _`verifyTransaction()`_ as shown below:
  
- _`$this->paystack->verifyTransaction($transaction_ref);`_
+ _`$ver_info = $this->paystack->verifyTransaction($transaction_ref);`_
 
  An array of the transaction information will be returned to you.
  
