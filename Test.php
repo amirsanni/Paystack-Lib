@@ -22,13 +22,19 @@ class Test extends CI_Controller{
     ********************************************************************************************************************************
     */
     
-    public function index(){
+    /**
+     * Initialise a transaction by getting only the authorised URL returned
+     */
+    public function getAuthURL(){
         //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_array=false)
-        print_r($this->paystack->init("ABFD24E10", 20000, "amir@skylar.com.ng", [
-            'name'=>"Amir Sanni",
+        $url = $this->paystack->init("FRB109TTUFD24E10", 20000, "amir@skylar.com.ng", [
+            'name'=>"Amir Olalekan",
             'ID'=>"AMS10",
-            "Phone"=>"07086201801"
-        ], base_url('test/callback'), FALSE));
+            "Phone"=>"07011111111"
+        ], base_url('test/callback'), FALSE);
+        
+        //$url ? header("Location: {$url}") : "";
+        $url ? redirect($url) : "";
     }
     
     /*
@@ -39,9 +45,59 @@ class Test extends CI_Controller{
     ********************************************************************************************************************************
     */
     
+    /**
+     * Initialise a transaction by getting the whole array returned back instead of just the authorised URL
+     */
+    public function initTransaction(){
+        //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_array=false)
+        $response_arr = $this->paystack->init("FRB109TTUFD24E10", 20000, "amir@skylar.com.ng", [
+            'name'=>"Amir Olalekan",
+            'ID'=>"AMS10",
+            "Phone"=>"07011111111"
+        ], base_url('test/callback'), TRUE);
+        
+        if($response_arr){
+            redirect($response_arr->data->authorization_url);
+        }
+    }
+    
+    /*
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    */
+    
+    /**
+     * Initialise subscription to a predefined plan and get just the AUTH_URL returned
+     */
+    public function getPlanAuthURL(){
+        //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_array=false)
+        $url = $this->paystack->init(20000, "amir@skylar.com.ng", "full_d4q", [], base_url('test/callback'), FALSE);
+        
+        //$url ? header("Location: {$url}") : "";
+        $url ? redirect($url) : "";
+    }
+    
+    /*
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    */
+    
+    /**
+     * Initialise subscription to a predefined plan and get the whole initialisation array returned
+     */
     public function subscribe(){
         //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_array=false)
-        print_r($this->paystack->init(20000, "amir@skylar.com.ng", "full_d4q", [], base_url('test/callback'), TRUE));
+        $response_arr = $this->paystack->init(20000, "amir@skylar.com.ng", "full_d4q", [], base_url('test/callback'), TRUE);
+        
+        if($response_arr){
+            redirect($response_arr->data->authorization_url);
+        }
     }
     
     /*
@@ -65,7 +121,13 @@ class Test extends CI_Controller{
     */
     
     public function callback(){
+        $trxref = $this->input->get('trxref', TRUE);
+        $ref = $this->input->get('reference', TRUE);
         
+        //do something e.g. verify the transaction
+        if($trxref === $ref){
+            $this->verify($trxref);
+        }
     }
     
     /*
