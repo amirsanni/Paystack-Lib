@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit("Access Denied");//comment this line if not using with CodeIgniter
+defined('BASEPATH') OR exit("Access Denied");//remove this line if not using with CodeIgniter
 
 /**
  * Description of Test
@@ -11,7 +11,9 @@ class Test extends CI_Controller{
     public function __construct(){
         parent::__construct();
         
-		$this->load->library('paystack', ['secret_key'=>'YOUR_SECRET_KEY', 'public_key'=>'YOUR_PUBLIC_KEY']);
+        $this->load->library('paystack', [
+            'secret_key'=>'sk_test_58caf76164c50ae6c7ff9c89a2369d67b74bea3a', 
+            'public_key'=>'pk_test_6ecaf53e98d465a523aaec2a2f1a202c47e7015e']);
     }
     
     /*
