@@ -74,10 +74,10 @@ class Paystack {
      * @param string $email Customer's email address
      * @param array $metadata_arr An array of metadata to add to transaction
      * @param string $callback_url URL to call in case you want to overwrite the callback_url set on your paystack dashboard
-     * @param boolean $return_array Whether to return the whole array or just the authorisation URL
+     * @param boolean $return_obj Whether to return the whole Object or just the authorisation URL
      * @return boolean
      */
-    public function init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_array=false){        
+    public function init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_obj=false){        
         if($ref && $amount_in_kobo && $email){
             //https://api.paystack.co/transaction/initialize
             $url = "https://api.paystack.co/transaction/initialize/";
@@ -94,8 +94,8 @@ class Paystack {
             $response = $this->curl($url, TRUE, $post_data);
             
             if($response){                
-                //return the whole decoded object if $return_array is true, otherwise return just the authorization_url
-                return $return_array ? json_decode($response) : json_decode($response)->data->authorization_url;
+                //return the whole Object if $return_obj is true, otherwise return just the authorization_url
+                return $return_obj ? json_decode($response) : json_decode($response)->data->authorization_url;
             }
             
             //api request failed
@@ -120,9 +120,9 @@ class Paystack {
      * @param string $plan Plan to subscribe user to
      * @param array $metadata_arr An array of metadata to add to transaction
      * @param string $callback_url URL to call in case you want to overwrite the callback_url set on your paystack dashboard
-     * @param boolean $return_array Whether to return the whole array or just the authorisation URL
+     * @param boolean $return_obj Whether to return the whole Object or just the authorisation URL
      */
-    public function initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_array=false){        
+    public function initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_obj=false){        
         if($amount_in_kobo && $email && $plan){
             //https://api.paystack.co/transaction/initialize
             $url = "https://api.paystack.co/transaction/initialize/";
@@ -139,8 +139,8 @@ class Paystack {
             $response = $this->curl($url, TRUE, $post_data);
             
             if($response){                
-                //return the whole decoded object if $return_array is true, otherwise return just the authorization_url
-                return $return_array ? json_decode($response) : json_decode($response)->data->authorization_url;
+                //return the whole decoded object if $return_obj is true, otherwise return just the authorization_url
+                return $return_obj ? json_decode($response) : json_decode($response)->data->authorization_url;
             }
             
             //api request failed

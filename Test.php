@@ -28,8 +28,8 @@ class Test extends CI_Controller{
      * Initialise a transaction by getting only the authorised URL returned
      */
     public function getAuthURL(){
-        //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_array=false)
-        $url = $this->paystack->init("SKYDD24E10", 20000, "amirsanni@gmail.com", [
+        //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_obj=false)
+        $url = $this->paystack->init("SKY09D24E10", 20000, "amirsanni@gmail.com", [
             'name'=>"Amir Olalekan",
             'ID'=>"AMS10",
             "Phone"=>"07011111111"
@@ -51,7 +51,7 @@ class Test extends CI_Controller{
      * Initialise a transaction by getting the whole array returned back instead of just the authorised URL
      */
     public function initTransaction(){
-        //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_array=false)
+        //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_obj=false)
         $response_arr = $this->paystack->init("FRTTUFD24E10", 20000, "amirsanni@gmail.com", [
             'name'=>"Amir Olalekan",
             'ID'=>"AMS10",
@@ -75,7 +75,7 @@ class Test extends CI_Controller{
      * Initialise subscription to a predefined plan and get just the AUTH_URL returned
      */
     public function getPlanAuthURL(){
-        //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_array=false)
+        //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_obj=false)
         $url = $this->paystack->init(20000, "amirsanni@gmail.com", "full_d4q", [], base_url('test/callback'), FALSE);
         
         //$url ? header("Location: {$url}") : "";
@@ -94,7 +94,7 @@ class Test extends CI_Controller{
      * Initialise subscription to a predefined plan and get the whole initialisation array returned
      */
     public function subscribe(){
-        //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_array=false)
+        //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_obj=false)
         $response_arr = $this->paystack->init(20000, "amirsanni@gmail.com", "full_d4q", [], base_url('test/callback'), TRUE);
         
         if($response_arr){
