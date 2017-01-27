@@ -53,6 +53,7 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
 - ### Charge Returning Customer:
 
  To charge a returning customer, call _`chargeReturningCustomer()`_ as shown below:
+ 
  _`$response = $this->paystack->chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref, $metadata_arr)`_
   - $auth_code {string}: Customer's authorization code (Required)
   - $amount_in_kobo {int}: Amount in kobo (Required)
