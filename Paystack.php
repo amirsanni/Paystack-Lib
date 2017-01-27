@@ -27,13 +27,17 @@ class Paystack {
     /**
      * 
      * @param string $url url to call
-     * @param array $headers headers array
      * @param boolean $use_post Whether to use POST as request method or not
      * @param array $post_data an array of post data
      * @return type
      */
-    private function curl($url, $headers, $use_post, $post_data=[]){
+    private function curl($url, $use_post, $post_data=[]){
         $curl = curl_init();
+        
+        $headers = [
+            "Authorization: Bearer {$this->secret_key}",
+            'Content-Type: application/json'
+        ];
 
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -77,11 +81,6 @@ class Paystack {
         if($ref && $amount_in_kobo && $email){
             //https://api.paystack.co/transaction/initialize
             $url = "https://api.paystack.co/transaction/initialize/";
-
-            $headers = [
-                "Authorization: Bearer {$this->secret_key}",
-                'Content-Type: application/json'
-            ];
                 
             $post_data = [
                 'reference'=>$ref,
@@ -91,7 +90,8 @@ class Paystack {
                 'callback_url'=>$callback_url
             ];
             
-            $response = $this->curl($url, $headers, TRUE, $post_data);
+            //curl($url, $use_post, $post_data=[])
+            $response = $this->curl($url, TRUE, $post_data);
             
             if($response){                
                 //return the whole decoded object if $return_array is true, otherwise return just the authorization_url
@@ -126,11 +126,6 @@ class Paystack {
         if($amount_in_kobo && $email && $plan){
             //https://api.paystack.co/transaction/initialize
             $url = "https://api.paystack.co/transaction/initialize/";
-
-            $headers = [
-                "Authorization: Bearer {$this->secret_key}",
-                'Content-Type: application/json'
-            ];
                 
             $post_data = [
                 'amount'=>$amount_in_kobo,
@@ -140,7 +135,8 @@ class Paystack {
                 'callback_url'=>$callback_url
             ];
 
-            $response = $this->curl($url, $headers, TRUE, $post_data);
+            //curl($url, $use_post, $post_data=[])
+            $response = $this->curl($url, TRUE, $post_data);
             
             if($response){                
                 //return the whole decoded object if $return_array is true, otherwise return just the authorization_url
@@ -171,11 +167,45 @@ class Paystack {
         //https://api.paystack.co/transaction/verify/:reference
         $url = "https://api.paystack.co/transaction/verify/".$transaction_reference;
         
-        $headers = [
-            "Authorization: Bearer {$this->secret_key}",
-            'Content-Type: application/json'
-        ];
+        //curl($url, $use_post, $post_data=[])
+        return json_decode($this->curl($url, FALSE));
+    }
+    
+    /*
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    */
+    
+    public function chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref="", $metadata_arr=[]){
         
-        return json_decode($this->curl($url, $headers, FALSE));
+        if($auth_code && $amount_in_kobo && $email){
+            //https://api.paystack.co/transaction/charge_authorization
+            $url = "https://api.paystack.co/transaction/charge_authorization/";
+                
+            $post_data = [
+                'authorization_code'=>$auth_code,
+                'amount'=>$amount_in_kobo,
+                'email'=>$email,
+                'reference'=>$ref,
+                'metadata'=>json_encode($metadata_arr)
+            ];
+
+            //curl($url, $use_post, $post_data=[])
+            $response = $this->curl($url, TRUE, $post_data);
+            
+            if($response){                
+                //return the whole json decoded object 
+                return json_decode($response);
+            }
+            
+            //api request failed
+            return FALSE;
+        }
+        
+        //required fields are not set
+        return FALSE;
     }
 }
