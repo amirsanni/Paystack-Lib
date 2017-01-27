@@ -17,13 +17,13 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
 
  To initialise a transaction, call _`init()`_ as shown below:
  
- _`$auth_url = $this->paystack->init($ref, $amount_in_kobo, $email, $metadata_arr, $callback_url, $return_array)`_
+ _`$auth_url = $this->paystack->init($ref, $amount_in_kobo, $email, $metadata_arr, $callback_url, $return_obj)`_
   - $ref {string}: Transaction Reference (Required)
   - $amount_in_kobo {int}: Amount in kobo (Required)
   - $email {string}: Customer's Email Address (Required)
   - $metadata_arr {Array}: An array of metadata (Optional)
   - $callback_url {string}: Callback URL (Optional)
-  - $return_array {boolean}: Whether the method should return the whole array or just the **authorization_url**. Authorization URL will be returned by default (Optional)
+  - $return_obj {boolean}: Whether the method should return the whole Object or just the **authorization_url**. Authorization URL will be returned by default (Optional)
   
 
 
@@ -31,13 +31,13 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
 
  To subscribe user to a predefined subscription, call _`initSubscription()`_ as shown below:
  
- _`$auth_url = $this->paystack->initSubscription($amount_in_kobo, $email, $plan, $metadata_arr, $callback_url, $return_array)`_
+ _`$auth_url = $this->paystack->initSubscription($amount_in_kobo, $email, $plan, $metadata_arr, $callback_url, $return_obj)`_
   - $amount_in_kobo {int}: Amount in kobo (Required)
   - $email {string}: Customer's Email Address (Required)
   - $plan {string}: Plan to subscribe user to (Required)
   - $metadata_arr {Array}: An array of metadata (Optional)
   - $callback_url {string}: Callback URL (Optional)
-  - $return_array {boolean}: Whether the method should return the whole array or just the **authorization_url**. Authorization URL will be returned by default (Optional)
+  - $return_obj {boolean}: Whether the method should return the whole Object or just the **authorization_url**. Authorization URL will be returned by default (Optional)
 
 
 - ### Transaction Verification:
@@ -46,8 +46,20 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
  
  _`$ver_info = $this->paystack->verifyTransaction($transaction_ref);`_
 
- An array of the transaction information will be returned to you.
+ An Object of the transaction information will be returned to you.
  
+ 
+ - ### Charge Returning Customer:
+
+ To charge a returning customer, call _`chargeReturningCustomer()`_ as shown below:
+ _`$response = $this->paystack->chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref, $metadata_arr)`_
+  - $auth_code {string}: Customer's authorization code (Required)
+  - $amount_in_kobo {int}: Amount in kobo (Required)
+  - $email {string}: Customer's Email Address (Required)
+  - $ref {string}: Transaction Reference (Optional)
+  - $metadata_arr {Array}: An array of metadata (Optional)
+ 
+  An Object of the transaction information will be returned to you.
  
 # Note:
 This library is a work in progress and far from done.
