@@ -27,7 +27,7 @@ class Test extends CI_Controller{
      */
     public function getAuthURL(){
         //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_array=false)
-        $url = $this->paystack->init("FRB109TTUFD24E10", 20000, "amir@skylar.com.ng", [
+        $url = $this->paystack->init("SKYDD24E10", 20000, "amirsanni@gmail.com", [
             'name'=>"Amir Olalekan",
             'ID'=>"AMS10",
             "Phone"=>"07011111111"
@@ -50,7 +50,7 @@ class Test extends CI_Controller{
      */
     public function initTransaction(){
         //init($ref, $amount_in_kobo, $email, $metadata_arr=[], $callback_url="", $return_array=false)
-        $response_arr = $this->paystack->init("FRB109TTUFD24E10", 20000, "amir@skylar.com.ng", [
+        $response_arr = $this->paystack->init("FRTTUFD24E10", 20000, "amirsanni@gmail.com", [
             'name'=>"Amir Olalekan",
             'ID'=>"AMS10",
             "Phone"=>"07011111111"
@@ -74,7 +74,7 @@ class Test extends CI_Controller{
      */
     public function getPlanAuthURL(){
         //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_array=false)
-        $url = $this->paystack->init(20000, "amir@skylar.com.ng", "full_d4q", [], base_url('test/callback'), FALSE);
+        $url = $this->paystack->init(20000, "amirsanni@gmail.com", "full_d4q", [], base_url('test/callback'), FALSE);
         
         //$url ? header("Location: {$url}") : "";
         $url ? redirect($url) : "";
@@ -93,7 +93,7 @@ class Test extends CI_Controller{
      */
     public function subscribe(){
         //initSubscription($amount_in_kobo, $email, $plan, $metadata_arr=[], $callback_url="", $return_array=false)
-        $response_arr = $this->paystack->init(20000, "amir@skylar.com.ng", "full_d4q", [], base_url('test/callback'), TRUE);
+        $response_arr = $this->paystack->init(20000, "amirsanni@gmail.com", "full_d4q", [], base_url('test/callback'), TRUE);
         
         if($response_arr){
             redirect($response_arr->data->authorization_url);
@@ -109,7 +109,20 @@ class Test extends CI_Controller{
     */
     
     public function verify($ref){
-        print_r($this->paystack->verifyTransaction($ref));
+        //verifyTransaction($ref) will return an array of verification details or FALSE on failure
+        $ver_info = $this->paystack->verifyTransaction($ref);
+        
+        //do something if verification is successful e.g. save authorisation code
+        if($ver_info && ($ver_info->status = TRUE) && ($ver_info->data->status == "success")){
+            $auth_code = $ver_info->data->authorization->authorization_code;
+            
+            //do something with $auth_code. $auth_code can be used to charge the customer next time
+            echo $auth_code;
+        }
+        
+        else{
+            //do something else
+        }
     }
     
     /*
@@ -127,6 +140,34 @@ class Test extends CI_Controller{
         //do something e.g. verify the transaction
         if($trxref === $ref){
             $this->verify($trxref);
+        }
+    }
+    
+    /*
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    */
+    
+    public function chargeReturningCust(){
+        $amount = 500000;
+        
+        //chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref="", $metadata_arr=[])
+        $response = $this->paystack->chargeReturningCustomer("AUTH_mvdfipt5", $amount, "amirsanni@gmail.com", "", [
+            'first_name'=>"Amir",
+            'last_name'=>"Sanni",
+            'Phone'=>"07086201801"
+        ]);
+        
+        //do something if charge is successful
+        if($response && ($response->status = TRUE) && ($response->data->status == "success") && ($response->data->amount == $amount)){
+            //do something
+        }
+        
+        else{
+            //do something else
         }
     }
     
