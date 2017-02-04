@@ -62,6 +62,20 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
   - $metadata_arr {Array}: An array of metadata (Optional)
  
   An Object of the transaction information will be returned to you.
+  
+  
+- ### Create Customer:
+
+ To create a customer, call _`createCustomer()`_ as shown below:
+ 
+ _`$response = $this->paystack->createCustomer($email, $first_name, $last_name, $phone, $meta)`_
+  - $email {string}: Customer's Email Address (Required)
+  - $first_name {string}: Customer's First Name (Optional)
+  - $last_name {string}: Customer's Last Name (Optional)
+  - $phone {string}: Customer's Phone Number (Optional)
+  - $meta {Array}: An array of metadata (Optional)
+ 
+  On success, the newly created customer's _ID_ and _Code_ will be returned as an array with keys __customer_id__ and __customer_code__.
  
 # Note:
 This library is a work in progress and far from done.
