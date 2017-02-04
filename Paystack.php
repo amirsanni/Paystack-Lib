@@ -208,4 +208,53 @@ class Paystack {
         //required fields are not set
         return FALSE;
     }
+    
+    /*
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    ********************************************************************************************************************************
+    */
+    
+    /**
+     * 
+     * @param string $email
+     * @param string $first_name
+     * @param string $last_name
+     * @param string $phone
+     * @param Array $meta
+     * @return boolean
+     */
+    public function createCustomer($email, $first_name='', $last_name='', $phone='', $meta=[]){
+        //https://api.paystack.co/customer
+        $url = "https://api.paystack.co/customer";
+        
+        if($email && $url){
+            $post_data = [
+                'email'=>$email,
+                'first_name'=>$first_name,
+                'last_name'=>$last_name,
+                'phone'=>$phone,
+                'metadata'=>json_encode($meta)
+            ];
+            
+            //curl($url, $use_post, $post_data=[])
+            $response = $this->curl($url, TRUE, $post_data);
+            
+            //decode the response
+            $data = json_decode($response);
+            
+            if($data && $data->status){                
+                //return customer_code and ID
+                return ['customer_id'=>$data->data->id, 'customer_code'=>$data->data->customer_code];
+            }
+            
+            //api request failed
+            return FALSE;
+        }
+        
+        //required fields are not set
+        return FALSE;
+    }
 }
