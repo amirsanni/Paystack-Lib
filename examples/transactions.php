@@ -49,4 +49,8 @@ $all_time = $paystack->transaction->allTime();
 $total_between_dates = $paystack->transaction->totalBetweenDates('2019-01-01', date('Y-m-d'));
 
 //export transactions
-// $paystack->transaction->export();//will be download
+// $paystack->transaction->export();//will be downloaded
+
+
+//chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref="", $metadata_arr=[])
+$paystack->transaction->chargeReturningCustomer($auth_code, $amount_in_kobo, $email, "", $metadata_arr);
