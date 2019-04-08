@@ -1,10 +1,9 @@
-# Paystack PHP Library for CodeIgniter
-PHP implementation of some of the features of Paystack's API targeted at CodeIgniter users but can be used by any PHP developer.
+# Paystack Library
+ A PHP library for communicating with Paystack API
 
 
 # Requirements
 - PHP >= 5.4
-- CodeIgniter 3.\*.\*
 
 
 # Getting Started
