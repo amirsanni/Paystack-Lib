@@ -88,7 +88,7 @@ class Customer extends Master {
             'last_name'=>$ln,
             'phone'=>$ph,
             'metadata'=>$md ? json_encode($md) : ''
-        ]), TRUE, "PUT");
+        ], TRUE, "PUT"));
 
         return $response;
     }
