@@ -110,5 +110,5 @@ $paystack->transaction->export();//file will be downloaded in csv format
 
 ### Charge Returning Customers
 ```
-$paystack->transaction->chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref, $metadata_array);
+$paystack->transaction->chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $transaction_ref, $metadata_array);
 ```
