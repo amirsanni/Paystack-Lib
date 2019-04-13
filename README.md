@@ -7,6 +7,13 @@
 
 
 # Getting Started
+
+## Installation
+```
+composer require amirsanni/paystack-lib
+```
+
+
 ### Initialise the library
 ```
 require 'vendor/autoload.php';
