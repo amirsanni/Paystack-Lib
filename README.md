@@ -63,7 +63,7 @@ $multiple = $paystack->transaction->getMany();
 ```
 
 
-### Get Transactions Based on Status (failed, success, abandoned)
+### Get transactions based on transaction status (failed, success, abandoned)
 ```
 $paystack->transaction->per_page = 20;//set number of items to return
 $paystack->transaction->page_number = 1;//set page number
