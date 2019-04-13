@@ -75,6 +75,4 @@ _`$this->load->library('paystack', ['secret_key'=>YOUR_SECRET_KEY, 'public_key'=
   - $meta {Array}: An array of metadata (Optional)
  
   On success, the newly created customer's _ID_ and _Code_ will be returned as an array with keys __customer_id__ and __customer_code__.
- 
-# Note:
-This library is a work in progress and far from done.
+  
