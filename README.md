@@ -56,8 +56,8 @@ $single = $paystack->transaction->getOne(TRANSACTION_ID);
 
 ### Get Multiple Transactions Details
 ```
-$paystack->transaction->per_page = 25;
-$paystack->transaction->page_number = 2;
+$paystack->transaction->per_page = 25;//set number of items to return
+$paystack->transaction->page_number = 3;//set page number
 
 $multiple = $paystack->transaction->getMany();
 ```
@@ -65,8 +65,8 @@ $multiple = $paystack->transaction->getMany();
 
 ### Get Transactions Based on Status (failed, success, abandoned)
 ```
-$paystack->transaction->per_page = 20;
-$paystack->transaction->page_number = 1;
+$paystack->transaction->per_page = 20;//set number of items to return
+$paystack->transaction->page_number = 1;//set page number
 
 $by_status = $paystack->transaction->whereStatus('success');
 ```
