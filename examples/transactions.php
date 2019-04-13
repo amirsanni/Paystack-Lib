@@ -28,7 +28,7 @@ $verified = $paystack->transaction->verify('CP43-EVR1IQNO');
 
 
 //Get single transaction info
-$single = $paystack->transaction->getOne(75749029 );
+$single = $paystack->transaction->getOne(75749029);
 
 
 //Get multiple transactions info
