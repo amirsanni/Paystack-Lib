@@ -104,7 +104,7 @@ $total_between_dates = $paystack->transaction->totalBetweenDates(FROM_DATE, TO_D
 
 ### Export Transactions
 ```
-$paystack->transaction->export();//will be downloaded
+$paystack->transaction->export();//file will be downloaded in csv format
 ```
 
 
