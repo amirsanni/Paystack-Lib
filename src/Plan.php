@@ -3,6 +3,7 @@ namespace amirsanni\paystacklib;
 
 class Plan extends Master {
     public function __construct($secret_key){
+        //set parent secret_key property
         $this->secret_key = $secret_key;
     }
 
