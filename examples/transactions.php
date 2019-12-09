@@ -1,5 +1,6 @@
 <?php
 require 'vendor/autoload.php';
+
 use amirsanni\paystacklib\Paystack;
 
 $paystack = new Paystack([
@@ -8,17 +9,17 @@ $paystack = new Paystack([
 
 
 //Make transaction. Will redirect to payment page
-// $make = $paystack->transaction->make([
-//     'ref'=>md5('dsef'),
-//     'amount_in_kobo'=>20000,
-//     'email'=>'amirsanni@gmail.com',
-//     'metadata'=>[
-//         'name'=>"Amir Olalekan",
-//         'ID'=>"AMS10",
-//         "Phone"=>"07045567890"
-//     ],
-//     'callback_url'=>'http://localhost/paystack-lib/examples/callback.php'
-// ]);
+$make = $paystack->transaction->make([
+    'ref'=>md5('dsef'),
+    'amount_in_kobo'=>20000,
+    'email'=>'amirsanni@gmail.com',
+    'metadata'=>[
+        'name'=>"Amir Olalekan",
+        'ID'=>"AMS10",
+        "Phone"=>"07045567890"
+    ],
+    'callback_url'=>'http://localhost/paystack-lib/examples/callback.php'
+]);
 
 // print_r($make);//if there is an error
 
@@ -49,7 +50,7 @@ $all_time = $paystack->transaction->allTime();
 $total_between_dates = $paystack->transaction->totalBetweenDates('2019-01-01', date('Y-m-d'));
 
 //export transactions
-// $paystack->transaction->export();//will be downloaded
+$paystack->transaction->export();//will be downloaded
 
 
 //chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $ref="", $metadata_arr=[])
