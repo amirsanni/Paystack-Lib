@@ -4,6 +4,11 @@
  */
 namespace amirsanni\paystacklib;
 
+use amirsanni\paystacklib\Plan;
+use amirsanni\paystacklib\Customer;
+use amirsanni\paystacklib\Subaccount;
+use amirsanni\paystacklib\Transaction;
+
 class Paystack {
     protected $secret_key;
     protected $public_key;
@@ -29,5 +34,7 @@ class Paystack {
         //initialise the classes that will be interacting with paystack
         $this->transaction = new Transaction($this->secret_key);
         $this->customer = new Customer($this->secret_key);
+        $this->plan = new Plan($this->secret_key);
+        $this->subaccount = new Subaccount($this->secret_key);
     }
 }
