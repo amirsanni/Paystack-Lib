@@ -13,6 +13,9 @@
 composer require amirsanni/paystack-lib
 ```
 
+# Features
+###
+
 
 ### Initialise the library
 ```
@@ -112,3 +115,27 @@ $paystack->transaction->export();//file will be downloaded in csv format
 ```
 $paystack->transaction->chargeReturningCustomer($auth_code, $amount_in_kobo, $email, $transaction_ref, $metadata_array);
 ```
+
+
+
+# Customer
+
+### Create Customer
+```
+$created = $paystack->customer->create('foo@bar.com', 'Foo', 'Bar', '0703xxxxxxx', [
+    'company'=>"Foo Bar"
+]);
+```
+
+### Get single customer information
+```
+$one = $paystack->customer->getOne(96992);
+```
+
+
+### Get multiple customer information
+```
+$many = $paystack->customer->getMany();
+```
+
+#### Check the examples directory for more.
