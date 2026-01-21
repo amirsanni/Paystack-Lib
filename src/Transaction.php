@@ -31,7 +31,6 @@ class Transaction extends Master{
      */
     public function make(array $trans_data){
         if($trans_data['ref'] && $trans_data['amount_in_kobo'] && $trans_data['email']){
-            //https://api.paystack.co/transaction/initialize
             $url = "https://api.paystack.co/transaction/initialize/";
                 
             $post_data = [
@@ -42,10 +41,8 @@ class Transaction extends Master{
                 'callback_url'=>$trans_data['callback_url']
             ];
             
-            //curl($url, $use_post, $post_data=[])
             $response = json_decode($this->curl($url, TRUE, $post_data));
             
-            //api request failed
             if($response){
                 if(isset($response->data) && isset($response->data->authorization_url)){
                     $this->redirect($response->data->authorization_url);
