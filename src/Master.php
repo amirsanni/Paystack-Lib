@@ -39,8 +39,6 @@ class Master {
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE);
 		
         $response = curl_exec($curl);
-		
-        curl_close($curl);
         
         return $response;
     }
