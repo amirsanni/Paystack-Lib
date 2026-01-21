@@ -90,7 +90,7 @@ class Transaction extends Master{
      * @param int $transaction_id
      */
     public function getOne($transaction_id){
-        //https://api.paystack.co/transaction/id
+        //https://api.paystack.co/transaction/:id
         $url = "https://api.paystack.co/transaction/{$transaction_id}";
         
         //curl($url, $use_post, $post_data=[])
